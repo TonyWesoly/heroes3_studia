@@ -6,6 +6,8 @@ import java.util.List;
 
 import pl.psi.Hero;
 import pl.psi.creatures.Creature;
+import pl.psi.creatures.CreatureFactory;
+import pl.psi.creatures.NecropolisFactionConfig;
 import pl.psi.gui.MainBattleController;
 import pl.psi.creatures.NecropolisFactory;
 import pl.psi.hero.EconomyHero;
@@ -42,9 +44,9 @@ public class EcoBattleConverter
     public static Hero convert( final EconomyHero aPlayer1 )
     {
         final List< Creature > creatures = new ArrayList<>();
-        final NecropolisFactory factory = new NecropolisFactory();
+        final CreatureFactory necropolisFactory = new CreatureFactory(new NecropolisFactionConfig());
         aPlayer1.getCreatures()
-            .forEach( ecoCreature -> creatures.add( factory.create( ecoCreature.isUpgraded(),
+            .forEach( ecoCreature -> creatures.add( necropolisFactory.create( ecoCreature.isUpgraded(),
                 ecoCreature.getTier(), ecoCreature.getAmount() ) ) );
         return new Hero( creatures );
     }

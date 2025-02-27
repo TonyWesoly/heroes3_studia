@@ -170,7 +170,7 @@ public class CreatureTest
     @Test
     void creatureShouldResurrect()
     {
-        Creature VampireLord = new NecropolisFactory().create(true, 4, 10);
+        Creature VampireLord = new CreatureFactory(new NecropolisFactionConfig()).create(true, 4, 10);
 
         final Creature dragon = new Creature.Builder().statistic( CreatureStats.builder()
                         .maxHp( NOT_IMPORTANT )
@@ -197,9 +197,10 @@ public class CreatureTest
     @Test
     void creatureShouldNotResurrectIfAttacksUndead()
     {
+        CreatureFactory necroFactory = new CreatureFactory(new NecropolisFactionConfig());
         Creature VampireLord =
-                new NecropolisFactory().create(true, 4, 1);
-        Creature Zombie = new NecropolisFactory().create(true, 2, 30);
+                necroFactory.create(true, 4, 1);
+        Creature Zombie = necroFactory.create(true, 2, 30);
 
         int initialAmount = VampireLord.getAmount();
 

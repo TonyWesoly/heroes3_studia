@@ -11,8 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pl.psi.Spell;
 import pl.psi.SpellName;
-import pl.psi.creatures.NecropolisFactory;
-import pl.psi.creatures.SpellBonusStatistic;
+import pl.psi.creatures.*;
 
 public class Start extends Application
 {
@@ -52,7 +51,8 @@ public class Start extends Application
     private Hero createP2()
     {
         final Hero ret = new Hero(
-                List.of( new NecropolisFactory().create( true, 1, 5 ) ),
+//                List.of( new NecropolisFactory().create( true, 1, 5 ) ),
+                List.of(new CreatureFactory(new NecropolisFactionConfig()).create(true,1,5)),
                 10,
                 List.of(new Spell.Builder()
                         .name(SpellName.MAGIC_ARROW)
@@ -69,7 +69,8 @@ public class Start extends Application
     private Hero createP1()
     {
         final Hero ret = new Hero(
-                List.of( new NecropolisFactory().create( false, 1, 5 ) ),
+//                List.of( new NecropolisFactory().create( false, 1, 5 ) ),
+                List.of( new CreatureFactory(new InfernoFactionConfig()).create( false, 3, 5 ) ),
                 15,
                 List.of(
                         new Spell.Builder().name(SpellName.MAGIC_ARROW).damage(5).level(1).manaCost(5).build(),

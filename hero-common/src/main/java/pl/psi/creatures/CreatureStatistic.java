@@ -48,7 +48,52 @@ public enum CreatureStatistic implements CreatureStatisticIf
         true, true ), //
     GHOST_DRAGON( "Ghost Dragon", 19, 17, 200, 14, Range.closed( 25, 50 ), 7,
         "When situation seems hopeless, take a chance on the best enemy stack! If you'll get lucky, half their hit points will be gone instantly!! Ageing ability makes ghost dragons as dangerous as other lvl7 creatures.\nSpecial: -1 to enemy morale ; 20% chance to age enemy (halve hit points of all stack members).\n",
-        true, true );//
+        true, true ),
+    // INFERNO FRACTION
+    IMP( "Imp", 2, 3, 4, 5, Range.closed( 1, 2 ), 1,
+            "Weakest level 1 unit in Heroes 3 which is also quite expensive. Useless all around :)",
+            false, false ),
+    GOG( "Gog", 6, 4, 13, 4, Range.closed( 2, 4 ), 2,
+            "Very good shooter, nice damage range and hit points are a meaningful number to them. Speed is too slow before upgraded though.",
+            false, false ),
+    HELL_HOUND( "Hell Hound", 10, 6, 25, 7, Range.closed( 2, 7 ), 3,
+            "Good offensive unit, low on defence. Strongly affected by bless and curse spells.",
+            false, false ),
+    DEMON( "Demon", 10, 10, 35, 5, Range.closed( 7, 9 ), 4,
+            "Average unit for level 4, but the price is very reasonable.",
+            false, false ),
+    PIT_FIEND( "Pit Fiend", 13, 13, 45, 6, Range.closed( 13, 17 ), 5,
+            "Not a very good level 5 creature, but costly. Demons and pit fiends kinda balance each outher out. Note how often number 13 is used :)",
+            false, false ),
+    EFREETI( "Efreeti", 16, 12, 90, 9, Range.closed( 16, 24 ), 6,
+            "Reasonable creature, can be purchased early due to inferno's specific building plan. Good troop for armageddon spellcaster.",
+            false, false ),
+    DEVIL( "Devil", 19, 21, 160, 11, Range.closed( 30, 40 ), 7,
+            "Makes a tough opponent because of speed and no enemy retaliation. Devil can beat an angel in one on one combat.",
+            false, false ),
+    // INFERNO FRACTION UPGRADED
+    FAMILIAR( "Familiar", 4, 4, 4, 7, Range.closed( 1, 2 ), 1,
+        "Upgrade is well worth doing: attack and defence become closer to medium for level 1, good speed and the mana chanelling abbility which makes it somewhat worthy having familiars present at the long battles. Think about it: he spends 20 mana and you'll get 4! Damage range does not reach 3 which is a big disadvantage. If you get the grail, you can get hordes of these guys :)",
+        true, false ),
+    MAGOG( "Magog", 7, 4, 13, 6, Range.closed( 2, 4 ), 2,
+        "Magog cannot beat marksman's two shots, but if enemies are standing close together, the advantage can be even grater. Note that fireproof units do not suffer magog's adjacent damage.",
+        true, false ),
+    CERBERUS( "Cerberus", 10, 8, 25, 8, Range.closed( 2, 7 ), 3,
+        "Great upgrade. This is the only case in the game where stats get downgraded, damage in this case because this damage can be done to 3 enemies at once. Better defence and with no retaliation it's a good idea to charge and attack the crowd.",
+        true, false ),
+    HORNED_DEMON( "Horned Demon", 10, 10, 40, 6, Range.closed( 7, 9 ), 4,
+        "One of the smallest upgrades in the game: 5 hit points and 1 speed for 20 gold... reasonable, but horned demons are now below-average among level 4 upgrades, but their price still remains low.",
+        true, false ),
+    PIT_LORD( "Pit Lord", 13, 13, 45, 7, Range.closed( 13, 17 ), 5,
+        "1 speed and demon resurrection abbility for 200 gold! Sounds darn expensive. Think this way: if you have lost 90 imps on a battle, 10 pit lords can resurrect them into about 10 demons... or if you lost 14 hell hounds, 10 pit lords can also turn them into about 10 demons. To raise 50 demons you will need 50 pit lords and a dead stack of about 70 hell hounds or 20 efreet or 440 imps. 50 Pit lords will cost 10000 gold to upgrade. 50 Demons cost 12500. Think for yourself... By the way, due to special-only upgrade, pit lords are weak among level 5. If you're low on money, pit lord costs almost like 3 demons who will make a stronger force.",
+        true, false ),
+    EFREET_SULTAN( "Efreet Sultan", 16, 14, 90, 13, Range.closed( 16, 24 ), 6,
+        "Excellent upgrade. Their speed is only matched by some level 7 upgrades and... dragon flies. Enemy will think well before attacking efreet sultans: portion of the damage returns back to the attacker plus the retaliation. Good to use them against high level creatures because fire shield damage will surpass their mighty defence without being decreased.",
+        true, false ),
+    ARCH_DEVIL( "Arch Devil", 26, 28, 200, 17, Range.closed( 30, 40 ), 7,
+        "Arch devil is no match for an arch angel. Otherways, a really powerful creature for non-retaliated attacks with outwaiting the opponent.",
+        true, false );
+    ;//
 
     private final String name;
     private int attack;

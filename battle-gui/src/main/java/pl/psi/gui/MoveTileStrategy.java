@@ -24,6 +24,7 @@ public class MoveTileStrategy implements TileStrategy {
             mapTile.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
                 sharedState.setSelectedSpellIdx(-1);
                 gameEngine.move(point);
+                gameEngine.pass();
                 sharedState.refreshGui();
             });
         }
