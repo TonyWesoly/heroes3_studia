@@ -52,7 +52,7 @@ public class Start extends Application
     {
         final Hero ret = new Hero(
 //                List.of( new NecropolisFactory().create( true, 1, 5 ) ),
-                List.of(new CreatureFactory(new NecropolisFactionConfig()).create(true,1,5)),
+                List.of(new CreatureFactory(new NecropolisFactionConfig()).create(true,5,5)),
                 10,
                 List.of(new Spell.Builder()
                         .name(SpellName.MAGIC_ARROW)
@@ -70,7 +70,7 @@ public class Start extends Application
     {
         final Hero ret = new Hero(
 //                List.of( new NecropolisFactory().create( false, 1, 5 ) ),
-                List.of( new CreatureFactory(new InfernoFactionConfig()).create( false, 3, 5 ) ),
+                List.of( new CreatureFactory(new InfernoFactionConfig()).create( true, 3, 4 ) ),
                 15,
                 List.of(
                         new Spell.Builder().name(SpellName.MAGIC_ARROW).damage(5).level(1).manaCost(5).build(),

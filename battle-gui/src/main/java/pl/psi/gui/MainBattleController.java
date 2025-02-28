@@ -1,5 +1,6 @@
 package pl.psi.gui;
 
+import javafx.scene.image.Image;
 import lombok.Getter;
 import pl.psi.*;
 
@@ -66,10 +67,19 @@ public class MainBattleController {
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 10; y++) {
                 final MapTile mapTile = new MapTile("");
-                gameEngine.getCreature(new Point(x, y))
-                        .ifPresent(c -> mapTile.setName(c.toString()));
-
+//                gameEngine.getCreature(new Point(x, y))
+//                        .ifPresent(c -> mapTile.setName(c.toString()));
                 tileContext.applyStrategies(mapTile, new Point(x,y));
+                gameEngine.getCreature(new Point(x, y)).ifPresent(c -> {
+                    String tilemapPath = "tilemaps/"+ c.getName() + ".png";
+                    Image tilemap = new Image(Start.class.getClassLoader().getResource(tilemapPath).toString());
+                    // We are trying to guess how many pixels the first sprite has - here a value of 100x135 px
+                    javafx.geometry.Rectangle2D viewport = new javafx.geometry.Rectangle2D(0, 0, 100, 135);
+                    mapTile.setUnitSprite(tilemap, viewport);
+                    mapTile.setUnitCount(c.getAmount());
+                });
+
+
 
                 gridMap.add(mapTile, x, y);
             }

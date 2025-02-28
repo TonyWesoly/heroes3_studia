@@ -36,6 +36,9 @@ public class InfernoFactionConfig implements FactionConfig {
 
     @Override
     public Creature transform(Creature creature, boolean isUpgraded, int tier) {
+        if ((isUpgraded && tier == 3) || (tier == 7)) {
+            return new NoCounterattackCreature(creature);
+        }
         return creature;
     }
 }

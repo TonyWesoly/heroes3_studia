@@ -23,6 +23,79 @@ public class CreatureTest
 {
     private static final int NOT_IMPORTANT = 100;
     private static final Range< Integer > NOT_IMPORTANT_DMG = Range.closed( 0, 0 );
+
+    private static final int BASE_HP = 100;
+
+    @Test
+    void noCounterattackCreatureAttackingShouldNotTriggerCounterattack() {
+        // given: creating a base attacker who would normally receive a counterattack,
+        // but wrapping it in NoCounterattackCreature because attackers do not trigger counterattacks.
+        Creature baseAttacker = new Creature.Builder()
+                .statistic(CreatureStats.builder()
+                        .maxHp(BASE_HP)
+                        .damage(Range.closed(10, 10))
+                        .attack(50)
+                        .armor(10)
+                        .build())
+                .amount(1)
+                .build();
+        baseAttacker.restoreCurrentHpToMax();
+        Creature noCounterAttacker = new NoCounterattackCreature(baseAttacker);
+
+        // defender – a normal unit that would counterattack if the attacker had no special ability.
+        Creature defender = new Creature.Builder()
+                .statistic(CreatureStats.builder()
+                        .maxHp(50)
+                        .damage(Range.closed(10, 10))
+                        .attack(10)
+                        .build())
+                .amount(1)
+                .build();
+        defender.restoreCurrentHpToMax();
+
+        // when: noCounterAttacker attacks the defender
+        noCounterAttacker.attack(defender);
+
+        // then: when the attacker (NoCounterattackCreature) performs an attack, the defender's counterattack is not triggered.
+        // As a result, the attacker should retain full HP (i.e., BASE_HP).
+        assertThat(noCounterAttacker.getCurrentHp()).isEqualTo(BASE_HP);
+    }
+
+    @Test
+    void noCounterattackCreatureDefendingShouldCounterattackNormally() {
+
+        // given: normal attacker
+        Creature attacker = new Creature.Builder()
+                .statistic(CreatureStats.builder()
+                        .maxHp(BASE_HP)
+                        .damage(Range.closed(10, 10))
+                        .attack(50)
+                        .armor(10)
+                        .build())
+                .amount(1)
+                .build();
+        attacker.restoreCurrentHpToMax();
+
+        // given: defender – setting higher maxHp so the attack does not kill the unit
+        Creature baseDefender = new Creature.Builder()
+                .statistic(CreatureStats.builder()
+                        .maxHp(100)   // increased HP so the unit survives the attack
+                        .damage(Range.closed(10, 10))
+                        .attack(10)
+                        .build())
+                .amount(1)
+                .build();
+        baseDefender.restoreCurrentHpToMax();
+        Creature noCounterDefender = new NoCounterattackCreature(baseDefender);
+
+        // when: attacker attacks noCounterDefender
+        attacker.attack(noCounterDefender);
+
+        // then: as a result of the defender's counterattack (which works normally when defending),
+        // we should observe a 10 HP loss for the attacker.
+        assertThat(attacker.getCurrentHp()).isEqualTo(BASE_HP - 10);
+    }
+
     @Test
     void creatureShouldAttackProperly()
     {

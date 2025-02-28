@@ -42,7 +42,7 @@ public class Creature implements PropertyChangeListener {
     Creature() {
     }
 
-    private Creature(final CreatureStatisticIf aStats, final DamageCalculatorIf aCalculator,
+    protected Creature(final CreatureStatisticIf aStats, final DamageCalculatorIf aCalculator,
                      final int aAmount) {
         stats = aStats;
         amount = aAmount;
@@ -112,7 +112,7 @@ public class Creature implements PropertyChangeListener {
         applyDamage(damage);
     }
 
-    private void applyDamage(final int aDamage) {
+    protected void applyDamage(final int aDamage) {
         int hpToSubstract = aDamage % getMaxHp();
         int amountToSubstract = Math.round(aDamage / getMaxHp());
 

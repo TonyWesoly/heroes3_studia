@@ -9,7 +9,6 @@ import pl.psi.creatures.Creature;
 import pl.psi.creatures.CreatureFactory;
 import pl.psi.creatures.NecropolisFactionConfig;
 import pl.psi.gui.MainBattleController;
-import pl.psi.creatures.NecropolisFactory;
 import pl.psi.hero.EconomyHero;
 
 import javafx.fxml.FXMLLoader;
